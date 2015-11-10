@@ -17,7 +17,7 @@ def roman_to_int(s):
     }
     result = 0
     for i in range(len(s)):
-        if i + 1 < len(s) and code[s[i]] < code[s[i + 1]] :
+        if i + 1 < len(s) and code[s[i]] < code[s[i + 1]]:
             result -= code[s[i]]
         else:
             result += code[s[i]]
