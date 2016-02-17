@@ -5,23 +5,35 @@
 # Created on 2016/2/17 18:14
 
 
-def combination_sum_3(k, n):
-    """
-    :type k: int
-    :type n: int
-    :rtype: List[List[int]]
-    """
-    result = []
-    combination = []
-    for i in range(1, 11 - k):
-        if i > n:
-            break
-        combination.append(i)
-        tmp = i
-        sum = i
-        for j in range(k):
-            for p in range(tmp + 1, 10):
-                if sum + p > n:
+class Solution(object):
+
+    def __init__(self):
+        self.result = []
+
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        self.com_sum(n, [], k, 1)
+        print(self.result)
+        return self.result
+
+    def com_sum(self, target, cur_list, nth, start_num):
+        if nth <= 0:
+            if target == 0:
+                self.result.append(list(cur_list))
+            return
+        if start_num > 9 or target < 0:
+            return
+        for i in range(start_num, 10):
+            if target - i >= 0:
+                cur_list.append(i)
+                self.com_sum(target - i, cur_list, nth - 1, i + 1)
+                cur_list.pop()
 
 
-combination_sum_3(3, 1)
+if __name__ == '__main__':
+    test = Solution()
+    test.combinationSum3(3, 9)
